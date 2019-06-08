@@ -6,7 +6,7 @@ const app = express()
 const aws = require('aws-sdk')
 const multerS3 = require('multer-s3')
 const multer = require('multer')
-const endpoint = new aws.Endpoint('s3.wasabisys.com')
+const endpoint = new aws.Endpoint(process.ENV.BASE_ENDPOINT_URL)
 const parsePath = require('parse-filepath')
 
 const s3 = new aws.S3({
@@ -33,7 +33,7 @@ app.get('/', (req, res, next) => {
     version: pkg.version,
     status: 'OK',
     code: 200,
-    message: 'bandforge uploader'
+    message: 'hello from uploader'
   })
 })
 
@@ -42,7 +42,7 @@ app.post('/', (req, res, next) => {
 
   upload(req, res, (err) => {
     if (err) return res.status(500).send(err)
-    const url = `https://s3.wasabisys.com/${process.env.BUCKET}/`
+    const url = `${process.env.BASE_ENDPOINT_URL}/${process.env.BUCKET}/`
     return res.json({
       filename: req.filename,
       url: `${url}${req.filename}`

@@ -10,7 +10,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "aws-sdk": "^2.471.0",
+    "aws-sdk": "^2.814.0",
     "dotenv": "^5.0.1",
     "express": "^4.16.3",
     "image-uploader-s3": "dylanlott/image-uploader-s3",
